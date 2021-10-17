@@ -1,6 +1,7 @@
 const slides = Array.from(document.querySelectorAll('.slide'))
 const slider = document.querySelector(".slider")
 const buttons = document.querySelectorAll('.button')
+const dots = document.querySelector('.slider__dots')
 
 function getNextPrev() {
     const activeSlide = document.querySelector('.slide.active')
@@ -43,7 +44,7 @@ buttons.forEach(button => {
 
 function getNextSlider() {
     const activeSlide = document.querySelector('.slide.active')
-    const activeIndex = slides.indexOf(activeSlide)
+
     const [next, prev] = getNextPrev()
 
     cleanse(activeSlide)
@@ -52,11 +53,12 @@ function getNextSlider() {
     next.classList.add('active')
     next.classList.add('fadeRight')
     next.style.transform = 'translateX(0)'
+    getActiveDot()
     // getPosition()
 }
 function getPrevSlide() {
     const activeSlide = document.querySelector('.slide.active')
-    const activeIndex = slides.indexOf(activeSlide)
+
     const [next, prev] = getNextPrev()
 
     cleanse(activeSlide)
@@ -65,10 +67,50 @@ function getPrevSlide() {
     prev.classList.add('active')
     prev.classList.add('fadeLeft')
     prev.style.transform = 'translateX(0)'
+    getActiveDot()
 }
 
 function cleanse(slide) {
     slide.classList.remove('active')
     slide.classList.remove('fadeLeft')
     slide.classList.remove('fadeRight')
+}
+
+//dots
+
+slides.map(slide => {
+    const dot = document.createElement('button')
+    dot.classList.add('dot')
+    dots.appendChild(dot)
+})
+
+function getActiveDot() {
+    const allDots = document.querySelectorAll('.dot')
+    const activeSlide = document.querySelector('.slide.active')
+    const activeIndex = slides.indexOf(activeSlide)
+
+    allDots.forEach(el => el.classList.remove('active'))
+    allDots[activeIndex].classList.add('active')
+
+
+}
+getActiveDot()
+
+function clickDot() {
+    const allDots = document.querySelectorAll('.dot')
+    allDots.forEach((el, index) => el.addEventListener('click', () => {
+        changeDot(index)
+    }))
+}
+clickDot()
+
+function changeDot(index) {
+    slides.forEach(slide => {
+        cleanse(slide)
+        // slide.classList.remove('active')
+    })
+    slides[index].classList.add('fadeLeft')
+    slides[index].classList.add('active')
+    getActiveDot()
+    getPosition()
 }

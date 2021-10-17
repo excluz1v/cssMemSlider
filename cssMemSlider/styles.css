@@ -121,6 +121,26 @@ section {
   transform: rotateY(180deg);
 }
 
+.slider__dots {
+  display: flex;
+  column-gap: 10px;
+  justify-content: center;
+}
+
+.dot {
+  /* width: 20px;
+  height: 20px; */
+  padding: 15px;
+  cursor: pointer;
+  background-color: inherit;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background-color: blue;
+}
+
 @media (min-width: 300px) {
   section {
     padding: 20px calc(50vw - 140px);
