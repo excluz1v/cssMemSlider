@@ -1,3 +1,5 @@
+console.log('Мобильная версия с 600рх')
+
 const slides = Array.from(document.querySelectorAll('.slide'))
 const slider = document.querySelector(".slider")
 const buttons = document.querySelectorAll('.button')
@@ -55,8 +57,7 @@ function getNextSlider() {
     next.classList.add('fadeRight')
     next.style.transform = 'translateX(0)'
     getActiveDot()
-    changeText(currentIndex)
-    // getPosition()
+    changeText(currentIndex, 'next')
 }
 function getPrevSlide() {
     const activeSlide = document.querySelector('.slide.active')
@@ -71,7 +72,7 @@ function getPrevSlide() {
     prev.classList.add('fadeLeft')
     prev.style.transform = 'translateX(0)'
     getActiveDot()
-    changeText(currentIndex)
+    changeText(currentIndex, 'prev')
 }
 
 function cleanse(slide) {
@@ -84,8 +85,16 @@ function cleanse(slide) {
 
 slides.map(slide => {
     const dot = document.createElement('button')
+    const circle = document.createElement('div')
+    circle.classList.add('circle')
+    // circle.setAttribute('type', 'image/svg+xml')
+    // circle.setAttribute('data', './icons/circle.svg')
+    const dot__wrapper = document.createElement('div')
+    dot__wrapper.classList.add('dot__wrapper')
+    dot__wrapper.appendChild(dot)
     dot.classList.add('dot')
-    dots.appendChild(dot)
+    dot.appendChild(circle)
+    dots.appendChild(dot__wrapper)
 })
 
 function getActiveDot() {
@@ -95,7 +104,6 @@ function getActiveDot() {
 
     allDots.forEach(el => el.classList.remove('active'))
     allDots[activeIndex].classList.add('active')
-
 
 }
 getActiveDot()
@@ -121,11 +129,13 @@ function changeDot(index) {
 
 //text slider
 
-function changeText(index = 0) {
+function changeText(index = 0, direction = 'prev') {
     slider__text.forEach(el => {
         cleanse(el)
     })
     slider__text[index].classList.add('active')
-    slider__text[index].classList.add('fadeLeft')
+    if (direction !== 'next') slider__text[index].classList.add('fadeLeft')
+    else slider__text[index].classList.add('fadeRight')
+
 }
 changeText()

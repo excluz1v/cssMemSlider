@@ -28,6 +28,8 @@ section {
   position: relative;
   height: 100vh;
   overflow-x: hidden;
+  color: #f3f3f3;
+  background-color: #292929;
 }
 
 .slider {
@@ -38,8 +40,8 @@ section {
 }
 
 .slide {
-  position: absolute;
   display: flex;
+  display: none;
   flex-direction: column;
   align-items: flex-end;
   width: 100%;
@@ -71,8 +73,6 @@ section {
 .slice__image {
   width: 100%;
   min-height: 300px;
-
-  /* padding-bottom: 56.2%; */
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
@@ -109,20 +109,26 @@ section {
 
 .slider__buttons {
   display: flex;
-  column-gap: 20px;
+  column-gap: 2rem;
+  align-items: center;
   justify-content: center;
   margin: 0 auto;
 }
 
 .button {
-  width: 20px;
-  height: 20px;
+  width: 2rem;
+  height: 2rem;
   pointer-events: all;
   cursor: pointer;
+  background-color: inherit;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   border: none;
+}
+
+.button:focus {
+  outline: none;
 }
 
 .next {
@@ -136,50 +142,88 @@ section {
 
 .slider__dots {
   display: flex;
-  column-gap: 10px;
+  column-gap: 1rem;
   justify-content: center;
 }
 
+.dot__wrapper {
+  width: 2rem;
+  height: 2rem;
+}
+
 .dot {
-  width: 20px;
-  height: 20px;
+  padding: 0.5rem;
   cursor: pointer;
   background-color: inherit;
-  border: 2px solid black;
-  border-radius: 50%;
+  border: none;
 }
 
 .dot.active {
-  background-color: blue;
+  background-color: inherit;
+}
+
+.circle {
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid #899ccf;
+  border-radius: 50%;
+}
+
+.circle:hover {
+  border-color: rgb(112, 112, 206);
+}
+
+.active .circle {
+  background-color: #899ccf;
+}
+
+.active .circle:hover {
+  border-color: #899ccf;
 }
 
 @media (min-width: 300px) {
   section {
-    padding: 20px calc(50vw - 140px);
+    padding: 2rem calc(50vw - 140px);
   }
 }
 
 @media (min-width: 575.98px) {
   section {
-    padding: 20px calc(50vw - 270px);
+    padding: 2rem calc(50vw - 270px);
   }
 }
 
 @media (min-width: 767.98px) {
   section {
-    padding: 20px calc(50vw - 360px);
+    padding: 2rem calc(50vw - 360px);
   }
 }
 
 @media (min-width: 991.98px) {
   section {
-    padding: 20px calc(50vw - 480px);
+    padding: 2rem calc(50vw - 480px);
   }
 }
 
 @media (min-width: 1199.98px) {
   section {
-    padding: 20px calc(50vw - 590px);
+    padding: 2rem calc(50vw - 590px);
   }
 }
+
+@media (max-width: 600px) {
+  .slider__footer {
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .slider__buttons,
+  .slider__text {
+    width: 100%;
+  }
+
+  .slider__buttons {
+    column-gap: 1rem;
+  }
 }
