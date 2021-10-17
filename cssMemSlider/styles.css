@@ -46,6 +46,14 @@ section {
   transform: translateX(100%);
 }
 
+.text {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
 .slide.active {
   transform: translateX(0);
 }
@@ -90,26 +98,31 @@ section {
   background-image: url("./mems/image4.jpg");
 }
 
+.slider__footer {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.slider__text {
+  flex-grow: 1;
+}
+
 .slider__buttons {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  max-width: 100px;
+  column-gap: 20px;
+  justify-content: center;
   margin: 0 auto;
 }
 
 .button {
+  width: 20px;
+  height: 20px;
   pointer-events: all;
   cursor: pointer;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   border: none;
-}
-
-.button {
-  width: 20px;
-  height: 20px;
 }
 
 .next {
@@ -128,9 +141,8 @@ section {
 }
 
 .dot {
-  /* width: 20px;
-  height: 20px; */
-  padding: 15px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   background-color: inherit;
   border: 2px solid black;

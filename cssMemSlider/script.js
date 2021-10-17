@@ -2,6 +2,7 @@ const slides = Array.from(document.querySelectorAll('.slide'))
 const slider = document.querySelector(".slider")
 const buttons = document.querySelectorAll('.button')
 const dots = document.querySelector('.slider__dots')
+const slider__text = document.querySelectorAll('.text')
 
 function getNextPrev() {
     const activeSlide = document.querySelector('.slide.active')
@@ -46,7 +47,7 @@ function getNextSlider() {
     const activeSlide = document.querySelector('.slide.active')
 
     const [next, prev] = getNextPrev()
-
+    const currentIndex = slides.indexOf(next)
     cleanse(activeSlide)
     activeSlide.style.transform = 'translateX(-100%)'
 
@@ -54,12 +55,14 @@ function getNextSlider() {
     next.classList.add('fadeRight')
     next.style.transform = 'translateX(0)'
     getActiveDot()
+    changeText(currentIndex)
     // getPosition()
 }
 function getPrevSlide() {
     const activeSlide = document.querySelector('.slide.active')
-
     const [next, prev] = getNextPrev()
+    const currentIndex = slides.indexOf(prev)
+
 
     cleanse(activeSlide)
     activeSlide.style.transform = 'translateX(-100%)'
@@ -68,6 +71,7 @@ function getPrevSlide() {
     prev.classList.add('fadeLeft')
     prev.style.transform = 'translateX(0)'
     getActiveDot()
+    changeText(currentIndex)
 }
 
 function cleanse(slide) {
@@ -100,6 +104,7 @@ function clickDot() {
     const allDots = document.querySelectorAll('.dot')
     allDots.forEach((el, index) => el.addEventListener('click', () => {
         changeDot(index)
+        changeText(index)
     }))
 }
 clickDot()
@@ -107,10 +112,20 @@ clickDot()
 function changeDot(index) {
     slides.forEach(slide => {
         cleanse(slide)
-        // slide.classList.remove('active')
     })
     slides[index].classList.add('fadeLeft')
     slides[index].classList.add('active')
     getActiveDot()
     getPosition()
 }
+
+//text slider
+
+function changeText(index = 0) {
+    slider__text.forEach(el => {
+        cleanse(el)
+    })
+    slider__text[index].classList.add('active')
+    slider__text[index].classList.add('fadeLeft')
+}
+changeText()
