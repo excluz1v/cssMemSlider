@@ -46,8 +46,7 @@ function getNextSlider() {
     const activeIndex = slides.indexOf(activeSlide)
     const [next, prev] = getNextPrev()
 
-    activeSlide.classList.remove('active')
-    activeSlide.classList.remove('fadeRight')
+    cleanse(activeSlide)
     activeSlide.style.transform = 'translateX(-100%)'
 
     next.classList.add('active')
@@ -56,5 +55,20 @@ function getNextSlider() {
     // getPosition()
 }
 function getPrevSlide() {
-    console.log('prev')
+    const activeSlide = document.querySelector('.slide.active')
+    const activeIndex = slides.indexOf(activeSlide)
+    const [next, prev] = getNextPrev()
+
+    cleanse(activeSlide)
+    activeSlide.style.transform = 'translateX(-100%)'
+
+    prev.classList.add('active')
+    prev.classList.add('fadeLeft')
+    prev.style.transform = 'translateX(0)'
+}
+
+function cleanse(slide) {
+    slide.classList.remove('active')
+    slide.classList.remove('fadeLeft')
+    slide.classList.remove('fadeRight')
 }
